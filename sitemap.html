@@ -1,0 +1,5 @@
+<div id="sitemap">Loading...</div>
+<script> //<![CDATA[
+var start=1;var max=150;var sitemapArr=new Array();function runsitemap(){var scpt=document.createElement('script');scpt.src='/feeds/posts/summary?alt=json&callback=sitemap&start-index='+start+'&max-results='+max;document.body.appendChild(scpt)} function sitemap(root){var elem=document.getElementById('sitemap');if(!elem)return;elem.innerHTML='';var feed=root.feed;if(feed.entry.length>0){for(var i=0;i<feed.entry.length;i++){var entry=feed.entry[i];var title=entry.title.$t;for(var j=0;j<entry.link.length;j++){if(entry.link[j].rel=="alternate"){var url=entry.link[j].href;if(url&&url.length>0&&title&&title.length>0){sitemapArr.push({'url':url,'judul':title})} break}}} if(feed.entry.length>=max){start+=max;runsitemap()} else{var print='';for(var x=0;x<sitemapArr.length;x++){print+='<li><a href=\"'+sitemapArr[x].url+'\" title=\"'+sitemapArr[x].judul+'\">'+sitemapArr[x].judul+'</a></li>'}
+elem.innerHTML='<div class=\"title\">Total Post: '+sitemapArr.length+'</div><ol>'+print+'</ol>'}}} runsitemap();
+//]]> </script>
